@@ -135,11 +135,11 @@ You can share the repo through [binder](https://mybinder.org/).
 
 <br>
 
-# Notes about Git
+# How to use Git
 
-Access the running container: `docker container exec -it pyspark-tutorial bash`
+Access the running container in a new terminal window: `docker container exec -it pyspark-tutorial bash`
 
-Or you can use `make bash`.
+Or you can use `make bash` in a new terminal window.
 
 Navigate into the `work` directory: `cd work`
 
@@ -149,12 +149,12 @@ Navigate into the `work` directory: `cd work`
 
 1. `git init`
 2. `git config --global --add safe.directory /home/jovyan/work`
-        1. NOTE: If you try to type `git add -A` at this point, then you will get this error: `fatal: detected dubious ownership in repository at '/home/jovyan/work'. To add an exception for this directory, call: git config --global --add safe.directory /home/jovyan/work`
+        1. NOTE: If you try to type `git add -A` without entering the above command, then you will get this error: `fatal: detected dubious ownership in repository at '/home/jovyan/work'. To add an exception for this directory, call: git config --global --add safe.directory /home/jovyan/work`
 3. `git config user.email "you@example.com"`
         1. NOTE: Omit `--global` to set the identity only in this repository.
 4. `git config user.name "Your Name"`
 5. `git branch -M main`
-6. `git remote add origin <replace-with-your-remote-origin>`
+6. `git remote add origin <replace-with-your-ssh-remote-origin>`
 
 <br>
 
@@ -163,6 +163,22 @@ Navigate into the `work` directory: `cd work`
 1. `git add -A`
 2. `git commit -m "First commit"`
 3. `git push -u origin main`
+        1. NOTE: In order to `push` to your remote repo you will have to setup SSH keys for your Docker container. See the next heading.
 
+<br>
 
-When adding and committing your code, it looks like you need to stop the Docker container, run those Git commands outside of Docker, and prefix each command with `sudo`. But when you push your code up to Github, you cannot prefix the command with `sudo`. I need to investigate this and find a better way to 
+### Setting up SSH keys for your Docker container
+
+*Source: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account*
+
+1. Generate a new SSH key: `ssh-keygen -t ed25519 -C "you@example.com"`
+2. Add your SSH key to the ssh-agent.
+        1. At this prompt `root@c53ff27359fb:~/work#` type this: `sudo -s -H`
+        2. Then at this prompt `root@c53ff27359fb:/home/jovyan/work#` type the following: 
+                1. `eval "$(ssh-agent -s)"`
+                2. `ssh-add ~/.ssh/id_ed25519`
+3. Add a new SSH key to your GitHub account:
+        1. Copy the SSH public key to your clipboard. At this prompt `root@c53ff27359fb:/home/jovyan/work#` type this: `cat ~/.ssh/id_ed25519.pub` 
+                1. Then select and copy the contents of the `id_ed25519.pub` file displayed in the terminal to your clipboard.
+        2. Then follow the rest of the instructions on this page: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account.
+        3. Once you have added your SSH key to your GitHub account, type `exit` in your terminal to exit the `root@c53ff27359fb:/home/jovyan/work#` prompt and return back to the `root@c53ff27359fb:~/work#` prompt. You should be able to `push` your code now.
