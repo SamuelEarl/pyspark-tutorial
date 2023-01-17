@@ -120,6 +120,7 @@ These are the other `make` commands:
 * `make list`
 * `make start`
 * `make remove`
+* `make bash`
 
 <br>
 
@@ -135,13 +136,11 @@ You can share the repo through [binder](https://mybinder.org/).
 
 <br>
 
-# How to use Git
+# How to push your code up to a remote Git repo from this Docker container
 
-Access the running container in a new terminal window: `docker container exec -it pyspark-tutorial bash`
+Access the running container in a new terminal window: `docker container exec -it pyspark-tutorial bash`. Or you can enter `make bash` in a new terminal window.
 
-Or you can use `make bash` in a new terminal window.
-
-Navigate into the `work` directory: `cd work`
+Once you are in the running container, navigate into the `work` directory: `cd work`
 
 <br>
 
@@ -158,16 +157,7 @@ Navigate into the `work` directory: `cd work`
 
 <br>
 
-## Now you can `add`, `commit`, and `push` like you normally would
-
-1. `git add -A`
-2. `git commit -m "First commit"`
-3. `git push -u origin main`
-        1. NOTE: In order to `push` to your remote repo you will have to setup SSH keys for your Docker container. See the next heading.
-
-<br>
-
-### Setting up SSH keys for your Docker container
+## Set up SSH keys for your Docker container
 
 *Source: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account*
 
@@ -181,4 +171,12 @@ Navigate into the `work` directory: `cd work`
         1. Copy the SSH public key to your clipboard. At this prompt `root@c53ff27359fb:/home/jovyan/work#` type this: `cat ~/.ssh/id_ed25519.pub` 
                 1. Then select and copy the contents of the `id_ed25519.pub` file displayed in the terminal to your clipboard.
         2. Then follow the rest of the instructions on this page: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account.
-        3. Once you have added your SSH key to your GitHub account, type `exit` in your terminal to exit the `root@c53ff27359fb:/home/jovyan/work#` prompt and return back to the `root@c53ff27359fb:~/work#` prompt. You should be able to `push` your code now.
+        3. Once you have added your SSH key to your GitHub account, type `exit` in your terminal to exit the `root@c53ff27359fb:/home/jovyan/work#` prompt and return back to the `root@c53ff27359fb:~/work#` prompt.
+        
+<br>
+
+## Now you can `add`, `commit`, and `push` like you normally would
+
+1. `git add -A`
+2. `git commit -m "First commit"`
+3. `git push -u origin main` (or just `git push` after you set your upstream origin with `git push -u origin main`)
