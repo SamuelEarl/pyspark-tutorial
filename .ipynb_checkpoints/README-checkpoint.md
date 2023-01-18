@@ -1,8 +1,8 @@
-This project has been created by following this tutorial: [PySpark Tutorial](https://www.youtube.com/watch?v=_C8kWso4ne4)
+This project was created while following this tutorial: [PySpark Tutorial](https://www.youtube.com/watch?v=_C8kWso4ne4)
+
+The [How to set up PySpark for your Jupyter notebook](https://opensource.com/article/18/11/pyspark-jupyter-notebook) tutorial provides an explanation for why you would want to use PySpark in JupyterLab.
 
 # How to run PySpark in JupyterLab
-
-This tutorial provides an explanation for why you would want to use PySpark in JupyterLab: [How to set up PySpark for your Jupyter notebook](https://opensource.com/article/18/11/pyspark-jupyter-notebook)
 
 ## Using Docker (Recommended)
 
